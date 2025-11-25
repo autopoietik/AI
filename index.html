@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Starter Pack IA | Era de la Inteligencia Artificial</title>
+    <style>
+        /* ESTÉTICA JAMES TURRELL 
+           - Espacio negativo
+           - Luz difusa
+           - Gradientes imperceptibles
+           - Sin bordes duros
+        */
+
+        :root {
+            --bg-deep: #050510;
+            --light-magenta: rgba(216, 70, 239, 0.6);
+            --light-blue: rgba(67, 56, 202, 0.6);
+            --light-violet: rgba(124, 58, 237, 0.5);
+            --text-glow: rgba(255, 255, 255, 0.8);
+            --card-surface: rgba(255, 255, 255, 0.03);
+            --font-main: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-deep);
+            color: #ffffff;
+            font-family: var(--font-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+            min-height: 100vh;
+            /* El fondo animado estilo "Ganzfeld" (campo total de luz) */
+            background: linear-gradient(
+                135deg, 
+                #0a0a1a 0%, 
+                #1a0b2e 25%, 
+                #1e1b4b 50%, 
+                #2e1065 75%, 
+                #0f0518 100%
+            );
+            background-size: 400% 400%;
+            animation: aurora 20s ease infinite;
+        }
+
+        /* Animación del fondo para que la luz cambie lentamente */
+        @keyframes aurora {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* TIPOGRAFÍA */
+        h1, h2, h3 {
+            font-weight: 200;
+            letter-spacing: 0.05em;
+        }
+
+        p {
+            font-weight: 300;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 1.5rem;
+        }
+
+        /* HEADER */
+        header {
+            text-align: center;
+            margin-bottom: 6rem;
+            position: relative;
+        }
+
+        header h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            /* Efecto Halo suave */
+            text-shadow: 0 0 30px var(--light-violet), 0 0 60px var(--light-magenta);
+            animation: breathe 6s ease-in-out infinite;
+        }
+
+        header .subtitle {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.6);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            position: relative;
+            display: inline-block;
+        }
+
+        header .subtitle::after {
+            content: '';
+            display: block;
+            width: 40px;
+            height: 1px;
+            background: rgba(255,255,255,0.3);
+            margin: 1.5rem auto 0;
+            box-shadow: 0 0 10px rgba(255,255,255,0.5);
+        }
+
+        /* TARJETAS - "CÁMARAS DE LUZ" */
+        .light-chamber {
+            background: var(--card-surface);
+            /* Backdrop filter para el efecto vidrio ahumado */
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 4px; /* Bordes mínimamente redondeados */
+            padding: 3rem;
+            margin-bottom: 4rem;
+            position: relative;
+            transition: all 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+            
+            /* Sombra interna y externa difusa para dar profundidad */
+            box-shadow: 
+                0 0 0 1px rgba(255, 255, 255, 0.02),
+                0 20px 50px rgba(0, 0, 0, 0.2);
+            
+            overflow: hidden;
+        }
+
+        /* Efecto de luz interior al hacer hover */
+        .light-chamber:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.05);
+            box-shadow: 
+                0 0 0 1px rgba(255, 255, 255, 0.05),
+                0 20px 60px rgba(124, 58, 237, 0.15),
+                inset 0 0 60px rgba(216, 70, 239, 0.05);
+        }
+
+        /* Gradiente sutil decorativo en la parte superior de la tarjeta */
+        .light-chamber::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--light-magenta), transparent);
+            opacity: 0.3;
+        }
+
+        .light-chamber h2 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: #fff;
+            /* Texto con luz sutil */
+            text-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+        }
+
+        .card-content {
+            padding-left: 1rem;
+            border-left: 1px solid rgba(255,255,255,0.1);
+        }
+
+        /* BOTONES */
+        .btn-glow {
+            display: inline-block;
+            text-decoration: none;
+            color: #fff;
+            padding: 1rem 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.02);
+            font-size: 0.9rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            transition: all 0.5s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-glow:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.3);
+            box-shadow: 0 0 20px var(--light-blue), 0 0 40px var(--light-violet);
+            text-shadow: 0 0 8px rgba(255,255,255,0.8);
+        }
+
+        /* PIE DE PÁGINA */
+        footer {
+            text-align: center;
+            padding: 4rem 0;
+            margin-top: 4rem;
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.4);
+            letter-spacing: 0.2em;
+            position: relative;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+        }
+
+        footer span {
+            display: inline-block;
+            animation: pulse-glow 4s infinite alternate;
+        }
+
+        /* ANIMACIONES AUXILIARES */
+        @keyframes breathe {
+            0%, 100% { text-shadow: 0 0 30px var(--light-violet), 0 0 60px var(--light-magenta); opacity: 1; }
+            50% { text-shadow: 0 0 15px var(--light-violet), 0 0 30px var(--light-magenta); opacity: 0.8; }
+        }
+
+        @keyframes pulse-glow {
+            0% { text-shadow: 0 0 5px rgba(255,255,255,0); }
+            100% { text-shadow: 0 0 15px rgba(255,255,255,0.5); }
+        }
+
+        /* MEDIA QUERIES */
+        @media (max-width: 600px) {
+            header h1 {
+                font-size: 2rem;
+            }
+            .container {
+                padding: 2rem 1.5rem;
+            }
+            .light-chamber {
+                padding: 2rem;
+            }
+            .btn-glow {
+                width: 100%;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- HEADER -->
+        <header>
+            <h1>Starter Pack</h1>
+            <div class="subtitle">Era de la Inteligencia Artificial</div>
+            <p style="margin-top: 1.5rem; font-size: 0.9rem; opacity: 0.6;">Recursos esenciales para aprender, crear y prosperar en la nueva era.</p>
+        </header>
+
+        <!-- SECCIÓN 1: PROMPT ENGINEERING -->
+        <article class="light-chamber">
+            <h2>Prompting Profesional</h2>
+            <div class="card-content">
+                <p>Guía práctica para dominar la comunicación con modelos de lenguaje: plantillas, estructura, principios y errores comunes.</p>
+                <a href="./pdfs/prompting.pdf" class="btn-glow" download>Descargar PDF – Prompting</a>
+            </div>
+        </article>
+
+        <!-- SECCIÓN 2: PENSAMIENTO SISTÉMICO -->
+        <article class="light-chamber">
+            <h2>Marco Mental</h2>
+            <div class="card-content">
+                <p>Conceptos esenciales de Pensamiento Sistémico para entender la complejidad en la Era Agéntica y la interacción humano-máquina.</p>
+                <a href="./pdfs/sistemico.pdf" class="btn-glow" download>Descargar PDF – Sistémico</a>
+            </div>
+        </article>
+
+        <!-- SECCIÓN 3: MAPA DE MODELOS -->
+        <article class="light-chamber">
+            <h2>Mapa de Modelos</h2>
+            <div class="card-content">
+                <p>Cuándo usar cada modelo (ChatGPT, Claude, Gemini, DeepSeek). Análisis de fortalezas, debilidades y combinaciones inteligentes por disciplina.</p>
+                <a href="./pdfs/modelos.pdf" class="btn-glow" download>Descargar PDF – Modelos</a>
+            </div>
+        </article>
+
+        <!-- SECCIÓN 4: OPORTUNIDADES -->
+        <article class="light-chamber">
+            <h2>Nuevas Oportunidades</h2>
+            <div class="card-content">
+                <p>10 roles emergentes, ideas de negocio, casos reales y caminos profesionales para adelantarte al mercado laboral actual.</p>
+                <a href="./pdfs/oportunidades.pdf" class="btn-glow" download>Descargar PDF – Oportunidades</a>
+            </div>
+        </article>
+
+        <!-- SECCIÓN 5: HERRAMIENTAS -->
+        <article class="light-chamber">
+            <h2>Herramientas IA</h2>
+            <div class="card-content">
+                <p>Selección curada para música, transcripción, automatización, código, diseño, productividad, video, investigación y más.</p>
+                <a href="./pdfs/herramientas.pdf" class="btn-glow" download>Descargar PDF – Herramientas</a>
+            </div>
+        </article>
+
+        <!-- FOOTER -->
+        <footer>
+            <span>Creado para la comunidad UDP — 2026</span>
+        </footer>
+    </div>
+
+</body>
+</html>
